@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crown Prince Zawir Hospital Slider</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+}
+
+.slider{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    z-index:2;
+}
+
+.content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+    text-align:center;
+    z-index:3;
+    width:90%;
+}
+
+.content h1{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.content p{
+    font-size:1.3rem;
+    max-width:800px;
+    margin:auto;
+}
+
+.dots{
+    position:absolute;
+    bottom:25px;
+    width:100%;
+    text-align:center;
+    z-index:4;
+}
+
+.dot{
+    height:12px;
+    width:12px;
+    border-radius:50%;
+    background:white;
+    display:inline-block;
+    margin:0 5px;
+    opacity:0.5;
+}
+
+.dot.active{
+    opacity:1;
+    transform:scale(1.3);
+}
+
+</style>
+</head>
+<body>
+
+<div class="slider">
+
+<div class="overlay"></div>
+
+<div class="slide active">
+    <img src="hospital-building.jpg" alt="">
+</div>
+
+<div class="slide">
+    <img src="covid-awareness.jpg" alt="">
+</div>
+
+<div class="slide">
+    <img src="healthy-lifestyle.jpg" alt="">
+</div>
+
+<div class="slide">
+    <img src="blood-donation.jpg" alt="">
+</div>
+
+<div class="content">
+    <h1>Crown Prince Zawir Hospital</h1>
+    <p>Excellence in Healthcare, Compassion in Service, Innovation for a Healthier Community.</p>
+</div>
+
+<div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+</div>
+
+</div>
+
+<script>
+
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+let currentSlide = 0;
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+        slide.classList.remove('active');
+    });
+
+    dots.forEach(dot=>{
+        dot.classList.remove('active');
+    });
+
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+}
+
+setInterval(()=>{
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    showSlide(currentSlide);
+
+},5000);
+
+</script>
+
+</body>
+</html>
